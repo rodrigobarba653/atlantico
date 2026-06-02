@@ -12,7 +12,7 @@ const meQuieroIr: Song = {
   links: {
     spotify:
       "https://open.spotify.com/track/4z1Xe6y45Od383bweDr8lx?si=c7528fda0493455b",
-    youtube: "https://youtu.be/ue6UF6wiH5A?si=QEjalmt_9JCQOek1",
+    youtube: "https://youtu.be/l1IXh7rdXJk",
     appleMusic: "https://music.apple.com/es/song/me-quiero-ir/6763089894",
   },
 };
