@@ -18,11 +18,11 @@ export type Song = {
   imageSrc: string;
   /** Alt text for the hero image */
   imageAlt: string;
-  /** Streaming URLs */
+  /** Streaming URLs. Omit a platform to hide its button. */
   links: {
-    spotify: string;
-    youtube: string;
-    appleMusic: string;
+    spotify?: string;
+    youtube?: string;
+    appleMusic?: string;
   };
 };
 
@@ -83,25 +83,25 @@ export function SongPage({
   const tone: Tone = theme === "light" ? "dark" : "light";
 
   const musicLinks = [
-    {
+    song.links.spotify && {
       label: `${song.title} en Spotify`,
       sublabel: "Escúchala en Spotify",
       href: song.links.spotify,
       icon: <SpotifyIcon className="h-5 w-5 text-[#1DB954]" />,
     },
-    {
+    song.links.youtube && {
       label: `${song.title} en YouTube`,
       sublabel: "Mira el video oficial",
       href: song.links.youtube,
       icon: <YouTubeIcon className="h-5 w-5 text-[#FF0000]" />,
     },
-    {
+    song.links.appleMusic && {
       label: `${song.title} en Apple Music`,
       sublabel: "Disponible en Apple Music",
       href: song.links.appleMusic,
       icon: <AppleMusicIcon className="h-5 w-5 text-[#FA3F6F]" />,
     },
-  ];
+  ].filter((link): link is NonNullable<typeof link> => Boolean(link));
 
   return (
     <main className="flex min-h-screen flex-col-reverse lg:flex-row">

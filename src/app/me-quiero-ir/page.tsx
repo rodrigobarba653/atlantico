@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { SongPage, type Song } from "@/components/SongPage";
+import { SpotifyAutoRedirect } from "@/components/SpotifyAutoRedirect";
 
 const META_PIXEL_ID = "952786404211204";
+
+const SPOTIFY_URL =
+  "https://open.spotify.com/track/4z1Xe6y45Od383bweDr8lx?si=bbd7f159ad5a4c79";
 
 const meQuieroIr: Song = {
   title: "Me Quiero Ir",
@@ -10,10 +14,7 @@ const meQuieroIr: Song = {
   imageSrc: "/hero1.png",
   imageAlt: "Atlántico — portada del single Me Quiero Ir",
   links: {
-    spotify:
-      "https://open.spotify.com/track/4z1Xe6y45Od383bweDr8lx?si=c7528fda0493455b",
-    youtube: "https://youtu.be/l1IXh7rdXJk",
-    appleMusic: "https://music.apple.com/es/song/me-quiero-ir/6763089894",
+    spotify: SPOTIFY_URL,
   },
 };
 
@@ -57,6 +58,7 @@ export default function MeQuieroIrPage() {
           alt=""
         />
       </noscript>
+      <SpotifyAutoRedirect url={SPOTIFY_URL} />
       <SongPage song={meQuieroIr} theme="light" />
     </>
   );
