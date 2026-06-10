@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { LinkButton, type Tone } from "@/components/LinkButton";
 import { SocialIconLink } from "@/components/SocialIconLink";
 import {
@@ -82,26 +83,37 @@ export function SongPage({
   // Cards/icons should contrast with the page surface.
   const tone: Tone = theme === "light" ? "dark" : "light";
 
-  const musicLinks = [
-    song.links.spotify && {
+  type MusicLink = {
+    label: string;
+    sublabel: string;
+    href: string;
+    icon: ReactNode;
+  };
+  const musicLinks: MusicLink[] = [];
+  if (song.links.spotify) {
+    musicLinks.push({
       label: `${song.title} en Spotify`,
       sublabel: "Escúchala en Spotify",
       href: song.links.spotify,
       icon: <SpotifyIcon className="h-5 w-5 text-[#1DB954]" />,
-    },
-    song.links.youtube && {
+    });
+  }
+  if (song.links.youtube) {
+    musicLinks.push({
       label: `${song.title} en YouTube`,
       sublabel: "Mira el video oficial",
       href: song.links.youtube,
       icon: <YouTubeIcon className="h-5 w-5 text-[#FF0000]" />,
-    },
-    song.links.appleMusic && {
+    });
+  }
+  if (song.links.appleMusic) {
+    musicLinks.push({
       label: `${song.title} en Apple Music`,
       sublabel: "Disponible en Apple Music",
       href: song.links.appleMusic,
       icon: <AppleMusicIcon className="h-5 w-5 text-[#FA3F6F]" />,
-    },
-  ].filter((link): link is NonNullable<typeof link> => Boolean(link));
+    });
+  }
 
   return (
     <main className="flex min-h-screen flex-col-reverse lg:flex-row">
